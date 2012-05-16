@@ -1,0 +1,43 @@
+<nav class="navbar">
+    <div class="navbar-inner">
+        <div class="container" style="margin-left:0px; margin-right:0px;">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    #foreach ($nav_item in $nav_items)
+                        #if ($nav_item.isSelected())
+                            <li class="active">
+                        #else
+                            #if ($nav_item.hasChildren())
+                                <li class="dropdown">
+                            #else
+                                <li>
+                            #end
+                        #end
+                        #if ($nav_item.hasChildren())
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="$nav_item.getURL()" $nav_item.getTarget()><span>$nav_item.icon() $htmlUtil.escape($nav_item.getName()) <b class="caret"></b></span></a>
+                                <ul class="dropdown-menu">
+                                    #foreach ($nav_child in $nav_item.getChildren())
+                                        #if ($nav_child.isSelected())
+                                            <li class="active">
+                                        #else
+                                            <li>
+                                        #end
+                                                <a href="$nav_child.getURL()" $nav_child.getTarget()>$nav_child.getName()</a>
+                                            </li>
+                                    #end
+                                </ul>
+                        #else
+                                <a href="$nav_item.getURL()" $nav_item.getTarget()><span>$nav_item.icon() $htmlUtil.escape($nav_item.getName())</span></a>
+                        #end
+                            </li>
+                    #end
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

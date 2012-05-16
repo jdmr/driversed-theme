@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+#parse ($init)
+
+<html class="#language("lang.dir")" dir="#language("lang.dir")" lang="$w3c_language_id">
+
+<head>
+	<title>$the_title - $company_name</title>
+
+        <link rel="stylesheet" href="/driversed-theme/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="/driversed-theme/css/bootstrap-responsive.min.css" type="text/css">
+        <link rel="stylesheet" href="/driversed-theme/css/font-awesome.css" type="text/css">
+        <link rel="stylesheet" href="/driversed-theme/css/custom-theme/jquery-ui-1.8.17.custom.css" type="text/css">
+        <link rel="stylesheet" href="/driversed-theme/css/chosen.css" type="text/css">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Comfortaa">
+        <style>
+            .titulo {
+                font-family: 'Comfortaa', serif;
+                font-size: 48px;
+                text-shadow: 4px 4px 4px #aaa;
+            }
+
+            .titulo a:hover {
+                text-decoration: none;
+            }
+        </style>
+
+        <script src="/driversed-theme/jwplayer/jwplayer.js"></script>
+        <script src="/driversed-theme/js/jquery-1.7.1.min.js"></script>
+        <script src="/driversed-theme/js/jquery-ui-1.8.17.custom.min.js"></script>
+        <script src="/driversed-theme/js/i18n/jquery.ui.datepicker-es.js"></script>
+        <script src="/driversed-theme/js/bootstrap.min.js"></script>
+        <script src="/driversed-theme/js/chosen.jquery.min.js"></script>
+        <script src="/driversed-theme/js/academia.js"></script>
+
+	$theme.include($top_head_include)
+
+</head>
+
+<body class="$css_class">
+
+#if ($permissionChecker.isOmniadmin() || $permissionChecker.isCompanyAdmin() || $permissionChecker.isCommunityAdmin($community_id))
+    #dockbar()
+#end
+
+<div class="container">
+        <header>
+            <div class="row">
+                <div class="span6">
+                    <div class="titulo"><a href="$company_url" title="#language("go-to") $company_name"><img src="$company_logo" /> $company_name</a></div>
+                </div>
+                <div class="span6 pull-right" style="text-align: right;">
+                    #if(!$is_signed_in)
+                        <a href="$sign_in_url">$sign_in_text</a>
+                    #else
+                        <div>
+                            <a href="$my_account_url" >
+                                <img alt="$user_name" src="$portrait_url" style="height:20px;"/>
+                            </a>
+                            <a href="$my_account_url" >
+                                $user_name
+                            </a>
+                            <span class="sign-out" >
+                                (<a href="$sign_out_url">$sign_out_text</a>)
+                            </span>
+                        </div>
+                    #end
+                    #if ($update_available_url)
+                        <div class="popup-alert-notice">
+                                <a class="update-available" href="$update_available_url">#language("updates-are-available-for-liferay")</a>
+                        </div>
+                    #end
+                </div>
+            </div>
+        </header>
+
+        #if ($has_navigation)
+                #parse ("$full_templates_path/navigation.vm")
+        #end
+
+	<div id="row">
+		#if ($selectable)
+			$theme.include($content_include)
+		#else
+			$portletDisplay.recycle()
+
+			$portletDisplay.setTitle($the_title)
+
+			$theme.wrapPortlet("portlet.vm", $content_include)
+		#end
+	</div>
+
+	<footer id="footer" role="contentinfo">
+                <hr />
+                <div class="row">
+                    <div class="span4">
+                        <h5>$company_name</h5>
+                        #foreach ($nav_item in $nav_items)
+                            <p>
+                                <a href="$nav_item.getURL()" $nav_item.getTarget()><span>$nav_item.icon() $htmlUtil.escape($nav_item.getName())</span></a>
+                            </p>
+                        #end
+                    </div>
+                    <div class="span4" style="text-align:center;">
+                        <h5>Follow us</h5>
+                        <p><a href="http://www.facebook.com/EscuelaSabaticaUniversitaria" target="_blank">Facebook</a></p>
+                        <p><a href="http://twitter.com/#!/esuniversitaria" target="_blank">Twitter</a></p>
+                    </div>
+                    <div class="span4" style="text-align:right;">
+                        <h5>
+                            #language("powered-by") <a href="http://onlineschooling.biz" rel="external">Online Schooling</a>
+                        </h5>
+                    </div>
+                </div>
+	</footer>
+    </div>
+
+    $theme.include($bottom_include)
+</body>
+</html>
