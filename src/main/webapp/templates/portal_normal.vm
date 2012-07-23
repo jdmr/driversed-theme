@@ -46,10 +46,10 @@
 <div class="container">
         <header>
             <div class="row">
-                <div class="span6">
+                <div class="span8">
                     <div class="titulo"><a href="$company_url" title="#language("go-to") $company_name"><img src="$company_logo" /> $company_name</a></div>
                 </div>
-                <div class="span6 pull-right" style="text-align: right;">
+                <div class="span4 pull-right" style="text-align: right;">
                     #if(!$is_signed_in)
                         <a href="$sign_in_url">$sign_in_text</a>
                     #else
