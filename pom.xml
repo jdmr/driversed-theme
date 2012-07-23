@@ -108,9 +108,9 @@
         </dependency>
     </dependencies>
     <properties>
-        <liferay.auto.deploy.dir>/opt/portal/liferay-portal-6.1.0-ce-ga1/deploy</liferay.auto.deploy.dir>
+        <liferay.auto.deploy.dir>/opt/portal/liferay-portal-6.0.6/deploy</liferay.auto.deploy.dir>
         <liferay.theme.parent>_styled</liferay.theme.parent>
         <liferay.theme.type>vm</liferay.theme.type>
-        <liferay.version>6.1.0</liferay.version>
+        <liferay.version>6.0.6</liferay.version>
     </properties>
 </project>
