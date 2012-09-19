@@ -93,7 +93,7 @@
 	<footer id="footer" role="contentinfo">
                 <hr />
                 <div class="row">
-                    <div class="span4">
+                    <div class="span6">
                         <h5>$company_name</h5>
                         #foreach ($nav_item in $nav_items)
                             <p>
@@ -101,9 +101,7 @@
                             </p>
                         #end
                     </div>
-                    <div class="span4" style="text-align:center;">
-                    </div>
-                    <div class="span4" style="text-align:right;">
+                    <div class="span6" style="text-align:right;">
                         <h5>
                             #language("powered-by") <a href="http://www.wheatlanddrivingacademy.com/" rel="external">Wheatland Driving Academy</a>
                         </h5>
